@@ -10,7 +10,7 @@ $accent_color: #F0A500;
 body {
   font-family: 'Montserrat', sans-serif;
   color: $dominant_color;
-  background: $dominant_color;
+  background: $main_color;
 }
 
 a {
@@ -76,6 +76,14 @@ a {
     }
   }
 
+  .active {
+    color: $accent_color;
+      &:before {
+        visibility: visible;
+        width: 60%;
+      }
+  }
+  
   a {
     &:hover, .active {
       &:before {
@@ -85,62 +93,21 @@ a {
     }
   }
 
-  .active {
-      &:before {
-        visibility: visible;
-        width: 60%;
-      }
-  }
 
-  .active{
-    color: $accent_color;
-  }
 }
 
 /**
 * Mobile Navigation 
 */
+
 .mobile-nav-toggle {
-  color: #222222;
-  font-size: 28px;
-  cursor: pointer;
   display: none;
-  line-height: 0;
-  transition: 0.5s;
-
-  .bi-x {
-    color: #fff;
-  }
-}
-
-@media (max-width: 991px) {
-  .mobile-nav-toggle {
-    display: block;
-  }
-  .navbar ul {
-    display: none;
-  }
 }
 
 .navbar-mobile {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
   background: rgba(9, 9, 9, 0.9);
   transition: 0.3s;
-  z-index: 999;
-
-  .mobile-nav-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-  }
-
   ul {
-    display: block;
     position: absolute;
     top: 55px;
     right: 15px;
@@ -152,26 +119,233 @@ a {
     overflow-y: auto;
     transition: 0.3s;
   }
+}
 
-  a {
-    font-size: 15px;
-    padding-right: 15px;
-    color: #222222;
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block;
   }
 
-  ul {
-    position: static;
-    display: none;
-    margin: 10px 20px;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 1;
-    visibility: visible;
-    background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  .navbar-mobile {    
+    display: block;
+  }
 
-    li {
-      min-width: 200px;
+  .navbar ul {
+    display: none;
+  }
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+
+  .container {
+    padding-top: 70px;
+    position: relative;
+  }
+
+  h4 {
+    font-weight: 900;
+    line-height: 56px;
+    color: $accent_color;
+    letter-spacing: 0.5em;
+  }
+
+  h1 {
+    color: $dominant_color;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    line-height: 56px;
+  }
+
+  h5 {
+    color: $dominant_color;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    line-height: 70px;
+  }
+
+  .socmed-component {
+    margin-right: 30px;
+    line-height: 24px;
+  }
+
+  %test {
+    position: absolute;
+    content: '';
+    transition: all .5s;
+  }
+  
+  %hover-color {
+    color: $accent_color;
+    background: $main_color;
+    border: 1px solid $accent_color;
+  }
+
+  .btn-works { 
+    transform: translate(0%, 30%);
+    transition: all .5s;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 2px;
+    display: inline-block;
+    padding: 12px 40px;
+    margin-top: 30px;
+    color: $main_color;
+    background: $accent_color;
+  
+    &::before {
+      @extend %test;
+      bottom: 45px;
+      height: 5px;
+      width: 100%;
+      left: -2px;
+      transform: skewX(45deg);
+      background-color: darken($accent_color, 30%);
+    }
+  
+    &::after {
+      @extend %test;
+      left: -5px;
+      height: 100%;
+      width: 5px;
+      bottom: 2px;
+      transform: skewY(45deg);
+      background-color: darken($accent_color, 40%);
+    }
+  
+    &:active {
+      margin-left: -0.05px;
+      margin-top: -0.05px;
+      &::before {
+        bottom: 45px;
+        height: 1px;
+        left: -1px;
+      }
+      
+      &::after {
+        width: 1px;
+        left: -1px;
+        bottom: 1px;
+      }	
+    }
+
+    &:hover {
+      @extend %hover-color;
+        &::before {
+          @extend %hover-color
+        }
+        &::after {
+          @extend %hover-color
+        }
+    }
+  }
+  
+}
+
+@media (max-width: 992px) {
+  #hero {
+    text-align: center;
+    .container {
+      padding-top: 50px;
+    }
+
+    h4 {
+      font-size: medium;
+    }
+  
+    h1 {
+      font-size: small;
+    }
+  
+    h5 {
+      font-size: medium;
+    }
+  }
+
+  
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 992px) {
+  #hero {
+    h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    h2 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+#about {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  text-align: right;
+
+  .container {
+    padding-top: 50px;
+    position: relative;
+  }  
+
+  h4 {
+    font-weight: 900;
+    line-height: 56px;
+    color: $accent_color;
+    letter-spacing: 0.5em;
+  }
+
+  h1 {
+    color: $dominant_color;
+    opacity: 0.7;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    line-height: 56px;
+    font-size: 8vw;
+    text-decoration: underline $accent_color;
+  }
+
+  h5 {
+    color: $dominant_color;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    line-height: 70px;
+  }
+
+  p {
+    letter-spacing: 0.25rem;
+    line-height: 30px;
+  }
+
+
+
+}
+
+@media (max-width: 992px) {
+  #about {
+
+    p {
+      font-size: small;
+      line-height: 25px;
     }
   }
 }
